@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calci App By Dipak</title>
+        <style>
+            *{font-size: 60;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
+            body{background-color:linen;}
+            h1{background-color:rgb(0, 0, 0);color: rgb(255, 255, 255); border-radius: 50px;}
+            input[type=submit]{background-color: aqua; padding: auto; font-size: 40px; border-color: rgb(255, 0, 0); }
+            input[type=number]{background-color: aqua; padding: auto 40px; border-color: rgb(255, 0, 0);}
+        </style>
+    </head>
+    <body>
+        <center>
+            <h1>Calci App</h1>
+            <form onsubmit="find()">
+                <input type="number" step="any" placeholder="enter first number" id="num1"/>
+                <br/>
+                <input type="submit" value="Square"/>
+                <input type="submit" value="Cube"/>
+                <input type="submit" value="Squareroot"/>
+            </form>
+            <h2 id="msg"></h2>
+            <script>
+                function find() {
+                    event.preventDefault();
+                    let num1 = document.getElementById("num1");
+                    let msg = document.getElementById("msg");
+                    let action = document.activeElement.value;
+
+                    if (num1.value === "") {
+                        alert("You did not enter a number");
+                        msg.innerHTML = "";
+                        num1.focus();
+                        return;
+                    }
+
+                    let n1 = parseFloat(num1.value);
+
+                    if (action === "Square") {
+                        let res = n1 * n1;
+                        let ans = "Square = " + res.toFixed(2);
+                        msg.innerHTML = ans;
+                    } else if (action === "Cube") {
+                        let res = n1 * n1 * n1;
+                        let ans = "Cube = " + res.toFixed(2);
+                        msg.innerHTML = ans;
+                    } else if (action === "Squareroot") {
+                        if (n1 < 0) {
+                            alert("Cannot calculate square root of a negative number");
+                            msg.innerHTML = "";
+                            num1.focus();
+                            return;
+                        } else {
+                            let res = Math.sqrt(n1);
+                            let ans = "Squareroot = " + res.toFixed(2);
+                            msg.innerHTML = ans;
+                        }
+                    }
+                }
+            </script>
+        </center>
+    </body>
+</html>
